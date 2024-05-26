@@ -56,10 +56,22 @@ const sendNotification = (subscription, data) => {
   webpush.sendNotification(subscription, JSON.stringify(data))
     .catch(err => console.error('Error sending notification', err));
 };
+// Etherscan Sepolia API key
+const ETHERSCAN_API_KEY = '';
+
+// Infura or Alchemy Sepolia RPC URL
+const SEPOLIA_RPC_URL = 'https://sepolia.gateway.tenderly.co';
+
+const provider = new ethers.providers.JsonRpcProvider(SEPOLIA_RPC_URL);
+
 const checkTransactions = async () => {
+  try {
+    const latestBlock = await provider.getBlockNumber();
+    console.log('Latest Block:', latestBlock);
+
     for (const address of trackedAddresses) {
       try {
-        const response = await axios.get(`https://api.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken`);
+        const response = await axios.get(`https://api-sepolia.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=${latestBlock - 5}&endblock=${latestBlock}&sort=asc&apikey=${ETHERSCAN_API_KEY}`);
         const transactions = response.data.result;
         if (transactions && transactions.length > 0) {
           const latestTransaction = transactions[transactions.length - 1];
@@ -70,10 +82,13 @@ const checkTransactions = async () => {
           subscriptions.forEach(sub => sendNotification(sub, notificationPayload));
         }
       } catch (error) {
-        console.error('Error fetching transactions', error);
+        console.error('Error fetching transactions for address:', address, error);
       }
     }
-  };
+  } catch (error) {
+    console.error('Error fetching latest block:', error);
+  }
+};
   
   const checkTest = async () => {
     const notificationPayload = {
