@@ -14,12 +14,12 @@ app.use((req, res, next) => {
   });
 
 const vapidKeys = {
-  publicKey: 'test-gWoFFX8N8CYgKa5r-Ok',
-  privateKey: 'test'
+  publicKey: 'BAXeqIBWzcNGqkgsRyztAi98ssWc97xz6d5TQj9dSywqLH8Snv1zy3OMxUjgbyhxYGV-gWoFFX8N8CYgKa5r-Ok',
+  privateKey: '31zwKI7qynk_3uegGoihbvNitjC73egkihbIFq9aW2A'
 };
 
 webpush.setVapidDetails(
-  'mailto:test@gmail.com',
+  'mailto:dmitrynoskovcz@gmail.com',
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
