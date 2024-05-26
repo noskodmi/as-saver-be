@@ -23,12 +23,12 @@ app.use((req, res, next) => {
   
 
 const vapidKeys = {
-  publicKey: 'BAXeqIBWzcNGqkgsRyztAi98ssWc97xz6d5TQj9dSywqLH8Snv1zy3OMxUjgbyhxYGV-gWoFFX8N8CYgKa5r-Ok',
-  privateKey: '31zwKI7qynk_3uegGoihbvNitjC73egkihbIFq9aW2A'
+  publicKey: '-gWoFFX8N8CYgKa5r-Ok',
+  privateKey: ''
 };
 
 webpush.setVapidDetails(
-  'mailto:dmitrynoskovcz@gmail.com',
+  'mailto:@gmail.com',
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
@@ -59,7 +59,7 @@ const sendNotification = (subscription, data) => {
     .catch(err => console.error('Error sending notification', err));
 };
 // Etherscan Sepolia API key
-const ETHERSCAN_API_KEY = 'UHTQXP4E4XBCMQI5P8I766RAMC1TV136QH';
+const ETHERSCAN_API_KEY = '';
 
 // Infura or Alchemy Sepolia RPC URL
 const SEPOLIA_RPC_URL = 'https://sepolia.gateway.tenderly.co';
