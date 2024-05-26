@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const webpush = require('web-push');
 const ethers = require('ethers');
+const axios = require('axios');
 
 const app = express();
 const port = 4000;
@@ -22,12 +23,12 @@ app.use((req, res, next) => {
   
 
 const vapidKeys = {
-  publicKey: '-gWoFFX8N8CYgKa5r-Ok',
-  privateKey: ''
+  publicKey: 'BAXeqIBWzcNGqkgsRyztAi98ssWc97xz6d5TQj9dSywqLH8Snv1zy3OMxUjgbyhxYGV-gWoFFX8N8CYgKa5r-Ok',
+  privateKey: '31zwKI7qynk_3uegGoihbvNitjC73egkihbIFq9aW2A'
 };
 
 webpush.setVapidDetails(
-  'mailto:@gmail.com',
+  'mailto:dmitrynoskovcz@gmail.com',
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
@@ -58,7 +59,7 @@ const sendNotification = (subscription, data) => {
     .catch(err => console.error('Error sending notification', err));
 };
 // Etherscan Sepolia API key
-const ETHERSCAN_API_KEY = '';
+const ETHERSCAN_API_KEY = 'UHTQXP4E4XBCMQI5P8I766RAMC1TV136QH';
 
 // Infura or Alchemy Sepolia RPC URL
 const SEPOLIA_RPC_URL = 'https://sepolia.gateway.tenderly.co';
