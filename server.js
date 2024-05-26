@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const webpush = require('web-push');
+const ethers = require('ethers');
 
 const app = express();
 const port = 4000;
@@ -62,7 +63,7 @@ const ETHERSCAN_API_KEY = '';
 // Infura or Alchemy Sepolia RPC URL
 const SEPOLIA_RPC_URL = 'https://sepolia.gateway.tenderly.co';
 
-const provider = new ethers.providers.JsonRpcProvider(SEPOLIA_RPC_URL);
+const provider = new ethers.JsonRpcProvider(SEPOLIA_RPC_URL);
 
 const checkTransactions = async () => {
   try {
