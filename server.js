@@ -6,20 +6,27 @@ const app = express();
 const port = 4000;
 
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Update to match the domain you will make the request from
-    res.header('Access-Control-Allow-Origin', 'https://master--assaver.netlify.app/'); // Update to match the domain you will make the request from
-    res.header('Access-Control-Allow-Origin', 'https://a309-185-199-104-14.ngrok-free.app/'); // Update to match the domain you will make the request from
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'https://master--assaver.netlify.app',
+      'https://a309-185-199-104-14.ngrok-free.app'
+    ];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+      res.header('Access-Control-Allow-Origin', origin);
+    }
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
   });
+  
 
 const vapidKeys = {
-  publicKey: 'BAXeqIBWzcNGqkgsRyztAi98ssWc97xz6d5TQj9dSywqLH8Snv1zy3OMxUjgbyhxYGV-gWoFFX8N8CYgKa5r-Ok',
-  privateKey: '31zwKI7qynk_3uegGoihbvNitjC73egkihbIFq9aW2A'
+  publicKey: '-gWoFFX8N8CYgKa5r-Ok',
+  privateKey: ''
 };
 
 webpush.setVapidDetails(
-  'mailto:dmitrynoskovcz@gmail.com',
+  'mailto:@gmail.com',
   vapidKeys.publicKey,
   vapidKeys.privateKey
 );
